@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script src="https://cdn.tailwindcss.com/?plugins=typography,forms,line-clamp,aspect-ratio"></script>
+
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>Consultas</title>
+</head>
+
+<body class="p-4 mb-2 bg-gray-400 text-black">
+    <nav class="flex items-center justify-between flex-wrap bg-teal-600 p-6">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+
+            <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+            </svg>
+            <span class="font-semibold text-xl tracking-tight mr-5">Consulting</span>
+
+            <form id="myform" action="{{ route('query.print') }}" method="POST">
+                @csrf
+
+                <button type="submit"
+                    class="bg-indigo-700 hover:bg-indigo-600 rounded p-3 border border-gray-200 font-bold"
+                    id="btn_update" name="btn_update" value="update">
+                    Actualizar productos</button>
+
+                <button type="submit"
+                    class="bg-blue-700 hover:bg-blue-600 rounded p-3 border border-gray-200 font-bold"
+                    formtarget="_blank" id="btn_print" name="btn_print" value="print">
+                    Imprimir</button>
+
+                <input type="hidden" id="oculto" name="oculto" />
+
+        </div>
+    </nav>
+
+    <div class="p-3 mb-2 bg-white h-100">
+        <div class="md:container mx-auto">
+            <div class="md:flex justify-center items-center">
+
+                <input type="text" id="txt_codigo" name="txt_codigo"
+                    class="block p-4 w-3/4 text-7xl text-gray-900 bg-gray-50 rounded-lg 
+                    border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 
+                    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                    dark:focus:border-blue-500 text-center"
+                    style="font-weight: bold" placeholder="Ingrese un código" onblur="buscar();" onkeyup="captura();" />
+
+            </div>
+        </div>
+        <div class="md:container mx-auto mt-8">
+            <div class="md:flex justify-center items-center">
+                <label id="lb_descripcion" name="lb_descripcion" class="text-8xl" style="font-weight:500"></label>
+            </div>
+        </div>
+        <div class="md:container mx-auto mt-4">
+            <div class="md:flex justify-center items-center">
+                <label id="lb_precio" name="lb_precio" class="text-8xl text-teal-600" style="font-weight: bold"></label>
+            </div>
+        </div>
+        <div class="md:flex justify-center align-center text-bold">
+            <h1 class="text-bold text-3xl">{{ session('status') }}</h1>
+        </div>
+
+        </form>
+
+    </div>
+
+    <footer class="blockquote-footer-white">V1.0</footer>
+
+    <script type="text/javascript" src="{{ asset('js/query.js') }}"></script>
+   
+</body>
+
+</html>
