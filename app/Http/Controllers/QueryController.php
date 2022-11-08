@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\articulos;
 use Exception;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Request as RequestFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

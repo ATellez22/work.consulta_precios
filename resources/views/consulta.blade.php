@@ -39,10 +39,7 @@
                 <button type="submit"
                     class="bg-blue-700 hover:bg-blue-600 rounded p-3 border border-gray-200 font-bold"
                     formtarget="_blank" id="btn_print" name="btn_print" value="print">
-                    Imprimir</button>
-
-                <input type="hidden" id="oculto" name="oculto" />
-
+                    Imprimir</button>                
         </div>
     </nav>
 
@@ -55,7 +52,7 @@
                     border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 
                     dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                     dark:focus:border-blue-500 text-center"
-                    style="font-weight: bold" placeholder="Ingrese un código" onblur="buscar();" onkeyup="captura();" />
+                    style="font-weight: bold" placeholder="Ingrese un código" onblur="buscar();" />
 
             </div>
         </div>

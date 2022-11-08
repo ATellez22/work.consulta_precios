@@ -33,9 +33,12 @@ const buscar = () => {
 
 //---------------------------------------------------------------------------------------------------//
 
-const captura = () => {
-    const cod = $('#txt_codigo').val();
-    oculto.value = cod;
-}
+// const captura = () => {
+//     const cod = $('#txt_codigo').val();
+//     oculto.value = cod;
+// }
+
+/* Se utilizaba para rellenar un input hidden automaticamente con cada escritura del usuario
+El problema es que no funciona al hacer 'copy/paste' o usar un escaner. */
 
 //---------------------------------------------------------------------------------------------------//
