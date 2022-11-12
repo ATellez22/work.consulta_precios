@@ -58,16 +58,18 @@ class QueryController extends Controller
 
             view()->share('exports.index', $products);
             $pdf = Pdf::loadView('exports.index', ['products' => $products]);
+            //Tamaño de papel. Se establece por puntos. 
+            $pdf->setPaper(array(0,0,156.4901574803, 71.13188976378), 'portrait');                 
             $pdf->render();
 
             return $pdf->stream("detail.pdf", ['Attachment' => false]);           
             
         } else { //Clic en actualizar productos
 
-            DB::table('test')->truncate();
+            DB::table('articulos')->truncate();
 
             try {
-                DB::statement(DB::raw("COPY test FROM '01822.txt' USING DELIMITERS '|'"));
+                DB::statement(DB::raw("COPY test FROM 'articulos.txt' USING DELIMITERS ';'"));
                 session()->flash('status', 'Articulos actualizados!');              
             } catch(Exception $e) {
                 session()->flash('status', $e->getMessage());
