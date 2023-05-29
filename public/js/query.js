@@ -1,3 +1,104 @@
+//*******************************************CODE READ*********************************************//
+
+$(document).ready(function () {
+    //document.getElementById("txt_usuario").focus();
+
+    $("#txt_codigo").keypress(function (e) {
+        var inputStart,
+            inputStop,
+            firstKey,
+            lastKey,
+            timing,
+            userFinishedEntering;
+        var minChars = 3;
+
+        $("#txt_codigo").keypress(function (e) {
+            if (timing) {
+                clearTimeout(timing);
+            }
+
+            if (e.which == 13) {
+                e.preventDefault();
+
+                if ($("#txt_codigo").val().length >= minChars) {
+                    userFinishedEntering = true;
+                    inputComplete();
+                }
+            } else {
+                inputStop = performance.now();
+                lastKey = e.which;
+
+                userFinishedEntering = false;
+
+                if (!inputStart) {
+                    firstKey = e.which;
+                    inputStart = inputStop;
+
+                    $("body").on("blur", "#txt_codigo", inputBlur);
+                }
+
+                timing = setTimeout(inputTimeoutHandler, 500);
+            }
+        });
+
+        function inputBlur() {
+            clearTimeout(timing);
+            if ($("#txt_codigo").val().length >= minChars) {
+                userFinishedEntering = true;
+                inputComplete();
+            }
+        }
+
+        $("#reset").click(function (e) {
+            e.preventDefault();
+            resetValues();
+        });
+
+        function resetValues() {
+            inputStart = null;
+            inputStop = null;
+            firstKey = null;
+            lastKey = null;
+
+            inputComplete();
+        }
+
+        function isScannerInput() {
+            return (
+                (inputStop - inputStart) / $("#txt_codigo").val().length < 15
+            );
+        }
+
+        function isUserFinishedEntering() {
+            return !isScannerInput() && userFinishedEntering;
+        }
+
+        function inputTimeoutHandler() {
+            clearTimeout(timing);
+
+            if (
+                !isUserFinishedEntering() ||
+                $("#txt_codigo").val().length < 3
+            ) {
+                return;
+            } else {
+                reportValues();
+            }
+        }
+
+        function inputComplete() {
+            /* perdida de foco automatico */
+            document.getElementById("txt_codigo").blur();
+
+        }
+    });
+});
+
+//*******************************************CODE READ*********************************************//
+
+
+
+
 $(document).ready(function() {
 
     $.ajaxSetup({

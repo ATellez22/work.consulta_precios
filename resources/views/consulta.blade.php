@@ -52,7 +52,7 @@
                     border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 
                     dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                     dark:focus:border-blue-500 text-center"
-                    style="font-weight: bold" placeholder="Ingrese un código" onblur="buscar();" />
+                    style="font-weight: bold" placeholder="Ingrese un código" onblur="buscar()" />
 
             </div>
         </div>

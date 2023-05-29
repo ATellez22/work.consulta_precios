@@ -66,16 +66,21 @@ class QueryController extends Controller
             
         } else { //Clic en actualizar productos
 
-            DB::table('articulos')->truncate();
+            //DB::table('articulos')->truncate();
 
             try {
                 DB::statement(DB::raw("SET client_encoding to 'UTF8';"));
                 DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'articles.txt' USING DELIMITERS '|'"));
+                //DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'C:\\Users\\Administrador.WIN-R5B3TMVD4U4\\Downloads\\articles.txt' USING DELIMITERS '|'"));
+
                 session()->flash('status', 'Articulos actualizados!');              
             } catch(Exception $e) {
                 session()->flash('status', $e->getMessage());
             }
             
+            /*
+            esto se ejecuta desde la carpeta 'data' de postgres
+            */
 
             return view('consulta');           
         }
