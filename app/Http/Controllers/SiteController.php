@@ -8,8 +8,8 @@ class SiteController extends Controller
 {
     public function barcode() {
 
-        $variable = '1001';
+        // $variable = '1001';
 
-        return view('barcode', compact('variable'));
+        // return view('barcode', compact('variable'));
     }
 }

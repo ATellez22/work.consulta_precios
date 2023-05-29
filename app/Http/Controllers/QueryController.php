@@ -69,11 +69,13 @@ class QueryController extends Controller
             DB::table('articulos')->truncate();
 
             try {
-                DB::statement(DB::raw("COPY test FROM 'articulos.txt' USING DELIMITERS ';'"));
+                DB::statement(DB::raw("SET client_encoding to 'UTF8';"));
+                DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'articles.txt' USING DELIMITERS '|'"));
                 session()->flash('status', 'Articulos actualizados!');              
             } catch(Exception $e) {
                 session()->flash('status', $e->getMessage());
             }
+            
 
             return view('consulta');           
         }
