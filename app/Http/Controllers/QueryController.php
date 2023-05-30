@@ -28,7 +28,7 @@ class QueryController extends Controller
                 ->where('codigo', $codigo)
                 ->get();
 
-            //Si no hay resultados    
+            //Si no hay resultados
             if ($respuesta->isEmpty()) {
                 //Respuesta en modo JSON
                 return response()->json([
@@ -37,7 +37,7 @@ class QueryController extends Controller
                 ]);
             } else {
                 //Destructuración del objeto
-                //Se puede ver el resultado con var_dump()    
+                //Se puede ver el resultado con var_dump()
                 $descripcion = $respuesta[0]->descripcion;
                 $precio = $respuesta[0]->precio;
                 //Respuesta en modo JSON
@@ -54,16 +54,16 @@ class QueryController extends Controller
 
         if ($request->btn_update == null) { //Clic en imprimir
 
-            $products = articulos::where('codigo', $request->txt_codigo)->get();
+            $products = articulos::where('codigo', $request->txt_cod)->get();
 
             view()->share('exports.index', $products);
             $pdf = Pdf::loadView('exports.index', ['products' => $products]);
-            //Tamaño de papel. Se establece por puntos. 
-            $pdf->setPaper(array(0,0,156.4901574803, 71.13188976378), 'portrait');                 
+            //Tamaño de papel. Se establece por puntos.
+            $pdf->setPaper(array(0,0,156.4901574803, 71.13188976378), 'portrait');
             $pdf->render();
 
-            return $pdf->stream("detail.pdf", ['Attachment' => false]);           
-            
+            return $pdf->stream("detail.pdf", ['Attachment' => false]);
+
         } else { //Clic en actualizar productos
 
             //DB::table('articulos')->truncate();
@@ -73,16 +73,16 @@ class QueryController extends Controller
                 DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'articles.txt' USING DELIMITERS '|'"));
                 //DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'C:\\Users\\Administrador.WIN-R5B3TMVD4U4\\Downloads\\articles.txt' USING DELIMITERS '|'"));
 
-                session()->flash('status', 'Articulos actualizados!');              
+                session()->flash('status', 'Articulos actualizados!');
             } catch(Exception $e) {
                 session()->flash('status', $e->getMessage());
             }
-            
+
             /*
             esto se ejecuta desde la carpeta 'data' de postgres
             */
 
-            return view('consulta');           
+            return view('consulta');
         }
     }
 }

@@ -39,18 +39,19 @@
                 <button type="submit"
                     class="bg-blue-700 hover:bg-blue-600 rounded p-3 border border-gray-200 font-bold"
                     formtarget="_blank" id="btn_print" name="btn_print" value="print">
-                    Imprimir</button>                
+                    Imprimir</button>
         </div>
     </nav>
 
     <div class="p-3 mb-2 bg-white h-100">
         <div class="md:container mx-auto">
             <div class="md:flex justify-center items-center">
+                <input type="hidden" id="txt_cod" name="txt_cod"/>
 
                 <input type="text" id="txt_codigo" name="txt_codigo"
-                    class="block p-4 w-3/4 text-7xl text-gray-900 bg-gray-50 rounded-lg 
-                    border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 
-                    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+                    class="block p-4 w-3/4 text-7xl text-gray-900 bg-gray-50 rounded-lg
+                    border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600
+                    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
                     dark:focus:border-blue-500 text-center"
                     style="font-weight: bold" placeholder="Ingrese un código" onblur="buscar()" />
 
@@ -77,7 +78,7 @@
     <footer class="blockquote-footer-white">V1.0</footer>
 
     <script type="text/javascript" src="{{ asset('js/query.js') }}"></script>
-   
+
 </body>
 
 </html>

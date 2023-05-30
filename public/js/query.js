@@ -87,8 +87,12 @@ $(document).ready(function () {
         }
 
         function inputComplete() {
-            /* perdida de foco automatico */
+
+            txt_cod.value = txt_codigo.value; /*Asignar valor a txt_cod para que se imprima*/
+
+             /* perdida de foco automatico */
             document.getElementById("txt_codigo").blur();
+
 
         }
     });
@@ -125,7 +129,10 @@ const buscar = () => {
             data: json,
             success: (data) => {
                 $('#lb_descripcion').text(data.descripcion);
-                $('#lb_precio').text(data.precio + ' Gs.');                
+                $('#lb_precio').text(data.precio + ' Gs.');
+
+                document.getElementById("txt_codigo").value = "";
+                document.getElementById("txt_codigo").focus();
 
             }
         })
