@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Request as RequestFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use TCPDF;
 
 class QueryController extends Controller
 {
@@ -70,11 +71,11 @@ class QueryController extends Controller
 
             try {
                 DB::statement(DB::raw("SET client_encoding to 'UTF8';"));
-                DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'articles.txt' USING DELIMITERS '|'"));
+                DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'articulos.csv' USING DELIMITERS ';'"));
                 //DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'C:\\Users\\Administrador.WIN-R5B3TMVD4U4\\Downloads\\articles.txt' USING DELIMITERS '|'"));
 
                 session()->flash('status', 'Articulos actualizados!');
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 session()->flash('status', $e->getMessage());
             }
 

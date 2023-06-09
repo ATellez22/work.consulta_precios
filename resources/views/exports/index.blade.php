@@ -30,13 +30,13 @@
         font-size: 14px;
         font-weight: bold;
     }
-    
+
     .barcode {
         margin-left: 60px;
         margin-top: 5px;
         margin-bottom: -10px;
-    }   
-    
+    }
+
     .code {
         font-weight: bold;
         font-size: 12px;
@@ -61,6 +61,9 @@
             <div class="code">{{ $product->codigo }}</div>
         @endforeach
     </div>
+
+
+
 
 </body>
 
