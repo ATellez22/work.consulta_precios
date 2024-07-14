@@ -72,6 +72,16 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - composer update
 - composer install
 - php artisan serve
+ 
+Para linux
+- Clonar repositorio
+- sudo apt install composer
+- composer --version
+- composer update (demora un poco)
+- sudo apt-get update
+- sudo apt-get install php-xml php-curl php-dom
+- composer install
+- php artisan serve
 
 
 
