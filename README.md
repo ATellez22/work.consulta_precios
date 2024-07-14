@@ -79,7 +79,7 @@ Para linux
 - composer --version
 - composer update (demora un poco)
 - sudo apt-get update
-- sudo apt-get install php-xml php-curl php-dom
+- sudo apt-get install php-xml php-curl php-dom php-pgsql
 - composer install
 - php artisan serve
 
