@@ -70,10 +70,13 @@ class QueryController extends Controller
             //DB::table('articulos')->truncate();
 
             try {
-                DB::statement(DB::raw("SET client_encoding to 'UTF8';"));
-                DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'articulos.csv' USING DELIMITERS ';'"));
-                //DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM 'C:\\Users\\Administrador.WIN-R5B3TMVD4U4\\Downloads\\articles.txt' USING DELIMITERS '|'"));
 
+                $csvFilePath = '/var/lib/postgresql/14/main/articulos.csv';
+                // $csvFilePath = 'C:\\Users\\Administrador\\Downloads\\articles.txt';
+                              
+                DB::statement(DB::raw("SET client_encoding to 'UTF8';"));               
+                DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM '{$csvFilePath}' USING DELIMITERS ';'"));
+                
                 session()->flash('status', 'Articulos actualizados!');
             } catch (Exception $e) {
                 session()->flash('status', $e->getMessage());
