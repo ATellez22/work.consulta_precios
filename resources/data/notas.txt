@@ -1,0 +1,4 @@
+Añadir en package.json: "milon/barcode": "^9.0", si genera problemas.
+
+https://github.com/milon/barcode
+
