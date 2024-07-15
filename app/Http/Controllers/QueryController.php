@@ -56,27 +56,25 @@ class QueryController extends Controller
         if ($request->btn_update == null) { //Clic en imprimir
 
             $products = articulos::where('codigo', $request->txt_cod)->get();
-
-            view()->share('exports.index', $products);
-            $pdf = Pdf::loadView('exports.index', ['products' => $products]);
+            view()->share('withoutDate.index', $products);
+            $pdf = Pdf::loadView('withoutDate.index', ['products' => $products]);
             //Tamaño de papel. Se establece por puntos.
-            $pdf->setPaper(array(0,0,156.4901574803, 71.13188976378), 'portrait');
+            $pdf->setPaper(array(0, 0, 156.4901574803, 71.13188976378), 'portrait');
             $pdf->render();
 
             return $pdf->stream("detail.pdf", ['Attachment' => false]);
-
         } else { //Clic en actualizar productos
 
-            //DB::table('articulos')->truncate();
+            DB::table('articulos')->truncate();
 
             try {
 
                 $csvFilePath = '/var/lib/postgresql/14/main/articulos.csv';
                 // $csvFilePath = 'C:\\Users\\Administrador\\Downloads\\articles.txt';
-                              
-                DB::statement(DB::raw("SET client_encoding to 'UTF8';"));               
-                DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio) FROM '{$csvFilePath}' USING DELIMITERS ';'"));
-                
+
+                DB::statement(DB::raw("SET client_encoding to 'UTF8';"));
+                DB::statement(DB::raw("COPY articulos (codigo, descripcion, precio, fecha_lote, fecha_venc) FROM '{$csvFilePath}' USING DELIMITERS ';'"));
+
                 session()->flash('status', 'Articulos actualizados!');
             } catch (Exception $e) {
                 session()->flash('status', $e->getMessage());
