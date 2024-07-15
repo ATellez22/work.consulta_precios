@@ -15,15 +15,15 @@
     }
 
     .content {
-       text-align: center;
+        text-align: center;
     }
 
     .description {
         margin-top: 10px;
         margin-bottom: 10px;
 
-        font-size:12px;
-        font-weight:bold;
+        font-size: 12px;
+        font-weight: bold;
     }
 
     .price {
@@ -41,24 +41,23 @@
         font-weight: bold;
         font-size: 12px;
     }
-
 </style>
 
 <body>
 
     <div class="content">
         @foreach ($products as $product)
-            <div class="description">{{ $product->descripcion }}
-            </div>
+        <div class="description">{{ $product->descripcion }}
+        </div>
 
-            <div class="price">
-                Gs {{ $precio = number_format($product->precio, 0, ',', '.') }} </div>
+        <div class="price">
+            Gs {{ $precio = number_format($product->precio, 0, ',', '.') }} </div>
 
-            <div class="barcode">
-                {!! DNS1D::getBarcodeHTML($product->codigo, 'EAN13', 1, 30, 'black', true) !!}
-            </div>
+        <div class="barcode">
+            {!! DNS1D::getBarcodeHTML($product->codigo, 'EAN13', 1, 30, 'black', true) !!}
+        </div>
 
-            <div class="code">{{ $product->codigo }}</div>
+        <div class="code">{{ $product->codigo }}</div>
         @endforeach
     </div>
 
