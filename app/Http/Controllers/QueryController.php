@@ -53,7 +53,7 @@ class QueryController extends Controller
     public function print(Request $request)
     {
 
-        if ($request->btn_update == null) { //Clic en imprimir
+        if ($request->has('btn_print')) { //Clic en imprimir sin fecha
 
             $products = articulos::where('codigo', $request->txt_cod)->get();
             view()->share('withoutDate.index', $products);
@@ -63,7 +63,17 @@ class QueryController extends Controller
             $pdf->render();
 
             return $pdf->stream("detail.pdf", ['Attachment' => false]);
-        } else { //Clic en actualizar productos
+        } elseif ($request->has('btn_print_with_fecha')) { //Clic en imprimir con fecha
+
+            $products = articulos::where('codigo', $request->txt_cod)->get();
+            view()->share('withDate.index', $products);
+            $pdf = Pdf::loadView('withDate.index', ['products' => $products]);
+            //Tamaño de papel. Se establece por puntos.
+            $pdf->setPaper(array(0, 0, 156.4901574803, 71.13188976378), 'portrait');
+            $pdf->render();
+
+            return $pdf->stream("detail.pdf", ['Attachment' => false]);
+        } elseif ($request->has('btn_update')) { //Actualizar productos
 
             DB::table('articulos')->truncate();
 
