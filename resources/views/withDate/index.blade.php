@@ -68,9 +68,10 @@
         @foreach ($products as $product)
         <div class="description">{{ substr($product->descripcion, 0, 25) }}
         </div>
-        <!-- 
+
         <div class="price">
-            Gs {{ $precio = number_format($product->precio, 0, ',', '.') }} </div> -->
+            Gs {{ $precio = number_format($product->precio, 0, ',', '.') }} </div>
+
         <div class="barcode">
             {!! DNS1D::getBarcodeHTML($product->codigo, 'EAN13', 1, 30, 'black', true) !!}
         </div>
