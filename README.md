@@ -83,5 +83,34 @@ Para linux
 - composer install
 - php artisan serve
 
+## Xammp
 
+* Iniciar xammp en Windows automáticamente
+    
+    - Opcion 1
+    
+    - Buscar xammp-control-panel en la carpeta de instalación
+      
+    - Añadirlo en menu inicio ejecutando lo siguiente en cmd: 'shell:startup' (Abre la carpeta)
+ 
+## Ejecutar npm el inicio de Windows
 
+- Crear un script por lotes
+
+@echo off
+cd C:\ruta\a\tu\proyecto
+start npm run dev
+exit
+
+- Crear tarea programada
+
+Para asegurarte de que el comando npm run dev se ejecute en segundo plano, puedes modificar el archivo .bat de la siguiente manera:
+
+@echo off
+cd C:\ruta\a\tu\proyecto
+start /B npm run dev
+exit
+
+Verificación: Puedes verificar si npm run dev está corriendo abriendo el Administrador de Tareas y buscando el proceso de Node.js.
+Logs: Considera redirigir la salida de npm run dev a un archivo de log para monitorear cualquier problema que pueda surgir.
+Así, tu proyecto con TailwindCSS se iniciará automáticamente al arrancar Windows, facilitando tu flujo de trabajo.
