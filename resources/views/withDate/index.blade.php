@@ -19,16 +19,16 @@
     }
 
     .description {
-        margin-top: 10px;
+        margin-top: 5px;
         margin-bottom: 1px;
         font-size: 12px;
         font-weight: bold;
     }
 
-    /* .price {
+    .price {
         font-size: 14px;
         font-weight: bold;
-    } */
+    }
 
     .barcode {
         margin-left: 60px;
@@ -42,26 +42,35 @@
     }
 
     .dates {
-        margin-top: 1px;
+        margin-top: 5px;
         margin-bottom: 5px;
         font-size: 12px;
         font-weight: bold;
+        text-align: left;
     }
 
-    .date-item {
-        margin: 0 10px;
+    .date-item1 {
+        margin-left: 10px;
+        display: inline-block;
+    }
+
+
+    .date-item2 {
+        margin-left: 10px;
+        display: inline-block;
     }
 </style>
 
 <body>
 
     <div class="content">
+
         @foreach ($products as $product)
-        <div class="description">{{ $product->descripcion }}
+        <div class="description">{{ substr($product->descripcion, 0, 25) }}
         </div>
 
-        <!-- <div class="price">
-            Gs {{ $precio = number_format($product->precio, 0, ',', '.') }} </div> -->
+        <div class="price">
+            Gs {{ $precio = number_format($product->precio, 0, ',', '.') }} </div>
 
         <div class="barcode">
             {!! DNS1D::getBarcodeHTML($product->codigo, 'EAN13', 1, 30, 'black', true) !!}
@@ -70,8 +79,8 @@
         <div class="code">{{ $product->codigo }}</div>
 
         <div class="dates">
-            <div class="date-item">Lote: {{ $product->fecha_lote }}</div>
-            <div class="date-item">Venc: {{ $product->fecha_venc }}</div>
+            <div class="date-item1">Lote: {{ $product->fecha_lote }}</div>
+            <div class="date-item2">Venc: {{ $product->fecha_venc }}</div>
         </div>
 
         @endforeach

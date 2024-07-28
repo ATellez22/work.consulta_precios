@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    text-align: center;
+}
+
+.description {
+    margin-top: 5px;
+    margin-bottom: 1px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.barcode {
+    margin-left: 60px;
+    margin-top: 1px;
+    margin-bottom: -15px;
+}
+
+.code {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.dates {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.date-item1 {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.date-item2 {
+    margin-left: 10px;
+    display: inline-block;
+}

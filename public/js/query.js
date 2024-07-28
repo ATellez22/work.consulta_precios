@@ -87,40 +87,31 @@ $(document).ready(function () {
         }
 
         function inputComplete() {
+            txt_cod.value =
+                txt_codigo.value; /*Asignar valor a txt_cod para que se imprima*/
 
-            txt_cod.value = txt_codigo.value; /*Asignar valor a txt_cod para que se imprima*/
-
-             /* perdida de foco automatico */
+            /* perdida de foco automatico */
             document.getElementById("txt_codigo").blur();
-
-
         }
     });
 });
 
 //*******************************************CODE READ*********************************************//
 
-
-
-
-$(document).ready(function() {
-
+$(document).ready(function () {
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
     });
-
 });
 
 const buscar = () => {
-
-    const cod = $('#txt_codigo').val();
+    const cod = $("#txt_codigo").val();
 
     if (cod === "") {
         console.log("Codigo vacio");
     } else {
-
         const json = "codigo=" + cod;
 
         $.ajax({
@@ -128,16 +119,15 @@ const buscar = () => {
             url: "query",
             data: json,
             success: (data) => {
-                $('#lb_descripcion').text(data.descripcion);
-                $('#lb_precio').text(data.precio + ' Gs.');
+                $("#lb_descripcion").text(data.descripcion);
+                $("#lb_precio").text(data.precio + " Gs.");
 
                 document.getElementById("txt_codigo").value = "";
                 document.getElementById("txt_codigo").focus();
-
-            }
-        })
+            },
+        });
     }
-}
+};
 
 //---------------------------------------------------------------------------------------------------//
 
