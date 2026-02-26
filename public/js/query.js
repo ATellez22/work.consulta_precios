@@ -119,12 +119,23 @@ const buscar = () => {
             url: "query",
             data: json,
             success: (data) => {
+                // Clear and animate in
+                $("#lb_descripcion, #lb_precio").css('opacity', 0);
+                
                 $("#lb_descripcion").text(data.descripcion);
                 $("#lb_precio").text(data.precio + " Gs.");
+                
+                $("#lb_descripcion, #lb_precio").animate({ opacity: 1 }, 500);
 
                 document.getElementById("txt_codigo").value = "";
                 document.getElementById("txt_codigo").focus();
             },
+            error: () => {
+                $("#lb_descripcion").text("Producto no encontrado");
+                $("#lb_precio").text("");
+                document.getElementById("txt_codigo").value = "";
+                document.getElementById("txt_codigo").focus();
+            }
         });
     }
 };
