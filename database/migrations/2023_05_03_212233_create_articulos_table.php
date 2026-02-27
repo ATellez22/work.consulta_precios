@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -18,6 +17,8 @@ return new class extends Migration
             $table->string('codigo');
             $table->string('descripcion');
             $table->string('precio');
+            $table->string('fecha_lote')->nullable();
+            $table->string('fecha_venc')->nullable();
             $table->timestamps();
         });
     }
