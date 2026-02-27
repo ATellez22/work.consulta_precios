@@ -4,6 +4,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        user: ${DOCKER_USER:-www-data}
+        uid: ${DOCKER_UID:-1000}
+
     image: laravel-app
     restart: unless-stopped
     tty: true
