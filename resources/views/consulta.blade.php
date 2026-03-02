@@ -110,17 +110,10 @@
                 <!-- Buttons -->
                 <div class="flex items-center gap-5">
 
-                    <button type="submit" name="btn_print" value="print" formtarget="_blank"
+                    <button type="button" id="btn_open_editor"
                         class="px-8 py-4 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm font-semibold shadow-lg shadow-blue-500/20 transition active:scale-95">
 
                         Imprimir
-
-                    </button>
-
-                    <button type="submit" name="btn_print_with_fecha" value="print_with_fecha" formtarget="_blank"
-                        class="px-8 py-4 bg-orange-600 hover:bg-orange-500 rounded-lg text-sm font-semibold shadow-lg shadow-orange-500/20 transition active:scale-95">
-
-                        Con Fecha
 
                     </button>
 
@@ -190,6 +183,18 @@
         }
     </script>
     <script type="text/javascript" src="{{ asset('js/query.js') }}"></script>
+    <script type="text/javascript">
+        document.getElementById('btn_open_editor').addEventListener('click', function () {
+            const codigo = document.getElementById('txt_cod').value;
+            if (!codigo) {
+                swal('Atención', 'Primero escaneá o ingresá un código de producto.', 'warning');
+                return;
+            }
+            const url = '/editor/' + encodeURIComponent(codigo);
+            window.open(url, '_blank');
+        });
+    </script>
 </body>
+
 
 </html>
