@@ -110,11 +110,14 @@
                 <!-- Buttons -->
                 <div class="flex items-center gap-5">
 
-                    <button type="button" id="btn_open_editor"
-                        class="px-8 py-4 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm font-semibold shadow-lg shadow-blue-500/20 transition active:scale-95">
-
+                    <button type="button" id="btn_direct_print"
+                        class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold shadow-lg shadow-indigo-500/20 transition active:scale-95">
                         Imprimir
+                    </button>
 
+                    <button type="button" id="btn_open_editor"
+                        class="px-8 py-4 bg-slate-700 hover:bg-slate-600 border border-white/10 rounded-lg text-sm font-semibold shadow-lg transition active:scale-95">
+                        Configurar
                     </button>
 
                 </div>
@@ -186,11 +189,18 @@
     <script type="text/javascript">
         document.getElementById('btn_open_editor').addEventListener('click', function () {
             const codigo = document.getElementById('txt_cod').value;
+            const url = codigo ? '/editor/' + encodeURIComponent(codigo) : '/editor';
+            window.open(url, '_blank');
+        });
+
+        // Validar impresión directa y abrir editor en modo autoprint
+        document.getElementById('btn_direct_print').addEventListener('click', function () {
+            const codigo = document.getElementById('txt_cod').value;
             if (!codigo) {
-                swal('Atención', 'Primero escaneá o ingresá un código de producto.', 'warning');
+                swal('Atención', 'Primero escaneá o ingresá un código de producto para imprimir.', 'warning');
                 return;
             }
-            const url = '/editor/' + encodeURIComponent(codigo);
+            const url = '/editor/' + encodeURIComponent(codigo) + '?autoprint=true';
             window.open(url, '_blank');
         });
     </script>

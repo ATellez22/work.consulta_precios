@@ -19,8 +19,19 @@ class QueryController extends Controller
         return view('consulta');
     }
 
-    public function editor(string $codigo)
+    public function editor(string $codigo = null)
     {
+        if (!$codigo) {
+            $products = [
+                (object) [
+                    'codigo' => '000000000000',
+                    'descripcion' => 'PRODUCTO DE EJEMPLO',
+                    'precio' => 99999
+                ]
+            ];
+            return view('editor', ['products' => $products, 'codigo' => '000000000000']);
+        }
+
         $products = articulos::where('codigo', $codigo)->get();
         return view('editor', ['products' => $products, 'codigo' => $codigo]);
     }

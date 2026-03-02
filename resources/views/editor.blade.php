@@ -36,6 +36,28 @@
             color: #e2e8f0;
         }
 
+        /* Estilo especial para cuando se entra desde la pantalla principal para imprimir directo */
+        body.autoprint-mode {
+            background: white !important;
+            color: black !important;
+        }
+
+        body.autoprint-mode .top-bar,
+        body.autoprint-mode .left-panel,
+        body.autoprint-mode .preview-info,
+        body.autoprint-mode .right-panel h2 {
+            display: none !important;
+        }
+
+        body.autoprint-mode .main-content {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            height: 100vh !important;
+            padding: 0 !important;
+            gap: 0 !important;
+        }
+
         /* ── layout ── */
         /* Contenedor principal de la página */
         .page-wrapper {
@@ -326,7 +348,8 @@
         /* Bloque de descripción del producto */
         .label-canvas .description {
             margin-top: 20px;
-            margin-bottom: 10px; /* Reducido a la mitad (era 20px) */
+            margin-bottom: 10px;
+            /* Reducido a la mitad (era 20px) */
             font-size: 24px;
             font-weight: bold;
         }
@@ -433,16 +456,22 @@
             }
 
             /* Reset al CSS exacto de withoutDate/index.blade.php */
+            /* Ajustado para que la escala 2x del editor coincida con la real */
             .label-canvas .description {
-                margin-top: 10px !important;
-                margin-bottom: 10px !important;
+                margin-top: 5px !important;
+                /* Reducido (era 10px) */
+                margin-bottom: 5px !important;
+                /* Reducido (era 10px) */
                 font-size: 12px !important;
             }
 
+            /* Bloque de precio del producto */
             .label-canvas .price {
                 font-size: 14px !important;
+                margin-bottom: 2px !important;
             }
 
+            /* Bloque del código de barras centrado */
             .label-canvas .barcode {
                 display: flex !important;
                 justify-content: center !important;
@@ -450,6 +479,7 @@
                 margin-bottom: 0px !important;
             }
 
+            /* Bloque del código numérico inferior */
             .label-canvas .code {
                 font-size: 12px !important;
             }
@@ -658,6 +688,16 @@
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2200);
         });
+
+        // ── Auto-impresion si viene desde la pantalla principal ──────────────
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('autoprint') === 'true') {
+            document.body.classList.add('autoprint-mode');
+            // Pequeño retardo para asegurar que JsBarcode y el DOM estén listos
+            setTimeout(() => {
+                window.print();
+            }, 600);
+        }
     </script>
 </body>
 
