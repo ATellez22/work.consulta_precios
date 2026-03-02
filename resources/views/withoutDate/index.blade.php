@@ -14,29 +14,37 @@
         padding: 0;
     }
 
+    /* Contenedor principal centrado y en negro */
     .content {
         text-align: center;
+        color: black;
     }
 
+    /* Descripción del producto */
     .description {
         margin-top: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+        /* Reducido a la mitad (era 10px) */
 
         font-size: 12px;
         font-weight: bold;
     }
 
+    /* Precio formateado */
     .price {
         font-size: 14px;
         font-weight: bold;
     }
 
+    /* Código de barras centrado con Flexbox */
     .barcode {
-        margin-left: 60px;
+        display: flex;
+        justify-content: center;
         margin-top: 5px;
-        margin-bottom: -10px;
+        margin-bottom: 0px;
     }
 
+    /* Código numérico inferior */
     .code {
         font-weight: bold;
         font-size: 12px;
@@ -47,17 +55,17 @@
 
     <div class="content">
         @foreach ($products as $product)
-        <div class="description">{{ $product->descripcion }}
-        </div>
+            <div class="description">{{ $product->descripcion }}
+            </div>
 
-        <div class="price">
-            Gs {{ $precio = number_format($product->precio, 0, ',', '.') }} </div>
+            <div class="price">
+                Gs {{ $precio = number_format($product->precio, 0, ',', '.') }} </div>
 
-        <div class="barcode">
-            {!! DNS1D::getBarcodeHTML($product->codigo, 'EAN13', 1, 30, 'black', true) !!}
-        </div>
+            <div class="barcode">
+                {!! DNS1D::getBarcodeHTML(str_pad($product->codigo, 12, '0', STR_PAD_LEFT), 'EAN13', 1, 25, 'black', true) !!}
+            </div>
 
-        <div class="code">{{ $product->codigo }}</div>
+            <div class="code">{{ $product->codigo }}</div>
         @endforeach
     </div>
 

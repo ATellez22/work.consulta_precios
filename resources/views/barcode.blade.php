@@ -16,13 +16,13 @@
 
     <div class="md:flex justify-center items-center align-center mb-5">
 
-        {!! DNS1D::getBarcodeHTML((string) time(), 'EAN13') !!}
+        {!! DNS1D::getBarcodeHTML(str_pad((string) time(), 12, '0', STR_PAD_LEFT), 'EAN13') !!}
 
     </div>
 
     <div class="md:flex justify-center items-center align-center">
 
-        {!! DNS1D::getBarcodeHTML('7840235002683', 'EAN13') !!}
+        {!! DNS1D::getBarcodeHTML(str_pad('7840235002683', 12, '0', STR_PAD_LEFT), 'EAN13') !!}
 
     </div>
 
